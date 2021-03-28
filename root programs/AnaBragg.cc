@@ -4,6 +4,7 @@
 #include <TSystem.h>
 #include "TNtuple.h"
 #include "TFile.h"
+#include "TLine.h"
 #include "TTree.h"
 #include "TCanvas.h"
 #include "TGraph.h"
@@ -16,6 +17,33 @@ struct bragg_signal {
   short int s[128];
 };
 #endif
+
+//function returning a line y=30%-Vmax
+double VPerc(double Vmax, double *par, double *x) {
+  par[0]=Vmax*30/100;
+  double fitval = par[0] + par[1]*0;
+   
+  return fitval;
+}
+
+TF1 *f1, *f2; 
+double finter(double *x, double*par) 
+{ 
+  return TMath::Abs(f1->EvalPar(x,par) - f2->EvalPar(x,par));
+} 
+   
+void fint() 
+{ 
+  
+  f1->Draw();
+  f2->Draw("same");
+  TF1 *fint = new TF1("fint",finter,0,10,0);
+  double xint = fint->GetMinimumX();
+  /*fint->Draw("lsame");
+  TMarker *m = new TMarker(xint,f1->Eval(xint),24); 
+  m->SetMarkerColor(kRed); 
+  m->SetMarkerSize(3); m->Draw(); printf("xint=%g\n",xint);*/
+   }
 
 int AnaBragg(const char *filename, int intto=128, float blfix=13, int nsig=0) {
 
@@ -92,6 +120,7 @@ int integerTo=128; //to change, integer to integerTo
         count=j;
         };
       }
+
       //std::cout<<"max is at"<< count<<std::endl;
       integral += gRandom->Rndm(); //WTF
 
@@ -107,48 +136,80 @@ int integerTo=128; //to change, integer to integerTo
 
       /* set where you want to calculate width, actaually there
       is a variable called "thr_frac" that should be used for this calc*/
-      double perc=50.0;
+      double perc=30.0;
       perc/=100;
-      double percVmax=thr_frac*(vmax);//vmax+blfix-bl
-      //std::cout<<percVmax<<std::endl;
-      double counter1=0.,counter2=0.;
+      double percVmax=perc*(vmax);//vmax+blfix-bl
+      
+      /*TF1 *Vmax30 = new TF1("Vmax30%", VPerc, intfrom, intto, 2);
+      double p0= Vmax30->GetParameter(0);
+    double p1 = Vmax30->GetParameter(1);
+      std::cout << "\nParametri retta\n p0:  "
+            << p0<<"\n p1: " <<  p1<<std::endl;*/
+    /*  TLine *line = new TLine(intfrom,percVmax,intto,percVmax);
+      int counter1a=0,counter1b=0,counter2a=0,counter2b=0;
+
       for (int p=intfrom; p<intto;p++)
       {
           if(signal.s[p]<percVmax)
           {
             //std::cout<<"under"<<std::endl;
-            counter1=p;
+            counter1a=p;
           }
-          if(signal.s[p+1]>percVmax && counter1>0) 
+          if(signal.s[p+1]>percVmax ) 
           {
+             counter1a=p+1;
             //std::cout<<"counter1 set to "<<counter1<<std::endl;
             break;
           }
-
+       
       }
+     double x1=fabs(percVmax*(counter1b-counter1a)/(signal.s[counter1b]-signal.s[counter1a])
+     -signal.s[counter1a]);
+      //TLine *line1 = new TLine(counter1a,signal.s[counter1a],counter1b,signal.s[counter1b]);  
+      //get parameters 
+
     // std::cout<<"intto"<<intto<<std::endl;
-      for (int p2=50; p2>count;p2--)
+      for (int p2=count; p2<intto;p2++)
       {
        //std::cout<<"signal p2 "<<signal.s[p2]-bl<<std::endl;
-          if(signal.s[p2]<percVmax)
+          if(signal.s[p2]>percVmax)
           {
            // std::cout<<p2<<std::endl;
-            counter2=p2;
+            counter2a=p2;
           }
-          if(signal.s[p2+1]>percVmax) break;
+          if(signal.s[p2+1]<percVmax) 
+          {
+            counter2b=p2+1;
+            break;
+            }
 
       }
-      width=counter2-counter1;
-      if(width>0)
+      double x2=fabs(percVmax*(counter2b-counter2a)/(signal.s[counter2b]-signal.s[counter2a])
+      -signal.s[counter2a]);
+      //TLine *line2 = new TLine(counter2a,signal.s[counter2a],counter2b,signal.s[counter2b]);  
+
+     // TF1* f1 = new TF1("f1",line1,intfrom,intto);
+      //TF1* f2 = new TF1("f2",line2,intfrom,intto); 
+      
+      width=fabs(x2-x1);
+      std::cout<<"x1: "<<x1<<" x2: "<<x2<<" width: "<<width<<std::endl;*/
+      width=0;
+      for (int p=intfrom; p<=intto; p++)
+      {
+        if (signal.s[p]>=percVmax) width++;
+      }
+      /*if(width>0)
       std::cout<<"width="<<width<<std::endl;
       else
-      std::cout<<"error "<<width<<std::endl;
+      std::cout<<"error "<<width<<std::endl;*/
       nt->Fill(i,vmax,integral,width,bl);//bl and width should be checked since code was implemented by me, 
       //and I am not a good programmer :(
+        //std::cout<<"signal: "<<signal.s[4]<<"\n";
   }
   std::cout << maxev << " events analyzed..." << std::endl;
 
   fout->Write();
+ // nt->Print();
   fout->Close();
 
   fin->Close();
