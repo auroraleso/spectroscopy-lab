@@ -1,0 +1,60 @@
+Integral peaks
+Used Library PCanvas.C
+
+--- GAUSSIAN FIT: peak n.1 -----------
+     peak = 4097.5488 +- 2.1901
+     fwhm = 58.7893 +- 3.6362      resol.(perc.) = 1.4347
+     area = 475.8 +- 29.2
+---------------------------------------
+     reduced chisquare: 1.267
+---------------------------------------
+
+--- GAUSSIAN FIT: peak n.2 -----------
+     peak = 4376.3667 +- 3.3600
+     fwhm = 71.2868 +- 5.1300      resol.(perc.) = 1.6289
+     area = 479.8 +- 36.3
+---------------------------------------
+     reduced chisquare: 1.131
+---------------------------------------
+
+ --- GAUSSIAN FIT: peak n.3 -----------
+     peak = 4650.0942 +- 6.7973
+     fwhm = 69.8998 +- 11.8546      resol.(perc.) = 1.5032
+     area = 223.4 +- 38.1
+---------------------------------------
+     reduced chisquare: 0.715
+---------------------------------------
+
+Data used for fit:
+x (peak value)	y (Tabulate Energy keV)	errx 	erry(keV)
+4097.5488 	5156.59 		 	2.1901 	0.14
+4376.3667 	5485.56  			3.3600 	0.12
+4650.094 		5804.77 			6.7973 	0 0.05
+
+Results for fit
+  EXT PARAMETER                                   STEP         FIRST
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE
+   1  par0         3.37837e+02   5.14980e+01   1.07148e-03   3.34588e-05
+   2  par1         1.17605e+00   1.22143e-02   5.60786e-07   1.42402e-01
+
+Parametri retta 337.837 +- 51.4981.17605 +- 0.0122143
+ FCN=0.106993 FROM MIGRAD    STATUS=CONVERGED      28 CALLS          29 TOTAL
+                     EDM=1.33458e-10    STRATEGY= 1      ERROR MATRIX ACCURATE
+  EXT PARAMETER                                   STEP         FIRST
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE
+   1  par0         3.37837e+02   5.15030e+01   1.07140e-03  -1.48256e-07
+   2  par1         1.17605e+00   1.22155e-02   5.60786e-07   7.12643e-04
+
+COVARIANCE MATRIX :
+
+2x2 matrix is as follows
+
+     |      0    |      1    |
+-------------------------------
+   0 |       2653     -0.6286
+   1 |    -0.6286   0.0001492
+
+
+Final Calibration function:
+y=337.837(+-50)+1.17605(+-0.01)*x
+
