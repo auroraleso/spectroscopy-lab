@@ -37,7 +37,7 @@ double fitzero(double *x, double *par) {
 
 void lin() {
   //crea un puntatore e nel costruttore gli passiamo direttamente il nome del file da cui prendere i dati
-  TGraphErrors *g = new TGraphErrors("calibBragg600.txt");
+  TGraphErrors *g = new TGraphErrors("lambda.txt");
     // associo un nome al seti di dati, do' un nome al puntatore del TGraphErrors
   g->SetName("fit");
 
@@ -55,12 +55,12 @@ void lin() {
   // definisco funzione del fit
   // la chiamo f1 e la associo alla funzione esponenziale che ho creato prima di nome fitf2. 
   //Devo dare i parametri xmin e xmax
-  TF1 *f1 = new TF1("f1", fitfretta, 4000, 5000, 2);
+  TF1 *f1 = new TF1("f1", fitfretta, 450, 700, 2);
   f1->SetLineStyle(1);
     f1->SetLineColor(2);
     f1->SetLineWidth(1);
   // setta i valori iniziali dei parametri
-  f1->SetParameters(4000,5);
+  f1->SetParameters(0,0);
     // (nome parametro 0, nome parametro 1, nome parametro2)
   f1->SetParNames("par0", "par1");
 
@@ -82,9 +82,9 @@ void lin() {
 TMultiGraph* mg = new TMultiGraph();
     mg->Add(g);
     mg->Draw("ap");
-    mg->SetTitle("calibrazione camera di Bragg");
-    mg->GetYaxis()->SetTitle("Energy (keV) ");
-    mg->GetXaxis()->SetTitle("peak");
+    mg->SetTitle("Fit lineare n vs lambda");
+    mg->GetYaxis()->SetTitle("n");
+    mg->GetXaxis()->SetTitle("lamda (nm)");
     f1->Draw("same");
 
   //c1->Print("fitsalitashaper.pdf");
@@ -120,9 +120,9 @@ TMultiGraph* mg = new TMultiGraph();
    TMultiGraph* mg1 = new TMultiGraph();
     mg1->Add(gr);
     mg1->Draw("AP");
-    mg1->SetTitle("Residui calibrazione camera di Bragg");
+    mg1->SetTitle("Residui fit lineare n vs lambda");
     mg1->GetYaxis()->SetTitle("Residuals ");
-    mg1->GetXaxis()->SetTitle("peak");
+    mg1->GetXaxis()->SetTitle("lambda (nm)");
     zero->Draw("same");
  
  // c2->Print("Residuiobliq.pdf");
