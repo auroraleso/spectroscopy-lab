@@ -37,7 +37,7 @@ double fitzero3(double *x, double *par) {
 
 void par() {
   //crea un puntatore e nel costruttore gli passiamo direttamente il nome del file da cui prendere i dati
-  TGraphErrors *g = new TGraphErrors("thirdpeak.txt");
+  TGraphErrors *g = new TGraphErrors("vmax_p.txt");
     // associo un nome al seti di dati, do' un nome al puntatore del TGraphErrors
   g->SetName("fit");
 
@@ -85,9 +85,9 @@ void par() {
 TMultiGraph* mg = new TMultiGraph();
     mg->Add(g);
     mg->Draw("ap");
-   mg->SetTitle("Energy vs p");
+   mg->SetTitle("Vmax vs p");
     mg->GetXaxis()->SetTitle("p (mb)");
-    mg->GetYaxis()->SetTitle("energy peak");
+    mg->GetYaxis()->SetTitle("Vmax u.a.");
     f1->Draw("same");
 
   //c1->Print("fitsalitashaper.pdf");
@@ -123,7 +123,7 @@ TMultiGraph* mg = new TMultiGraph();
    TMultiGraph* mg1 = new TMultiGraph();
     mg1->Add(gr);
     mg1->Draw("AP");
-    mg1->SetTitle("Residui energy vs p");
+    mg1->SetTitle("Residui Vmax vs p");
     mg1->GetYaxis()->SetTitle("Residuals ");
     mg1->GetXaxis()->SetTitle("p (mb)");
     zero->Draw("same");

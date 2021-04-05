@@ -37,7 +37,7 @@ double fitzero(double *x, double *par) {
 
 void lin() {
   //crea un puntatore e nel costruttore gli passiamo direttamente il nome del file da cui prendere i dati
-  TGraphErrors *g = new TGraphErrors("thirdpeak.txt");
+  TGraphErrors *g = new TGraphErrors("vmax_p.txt");
     // associo un nome al seti di dati, do' un nome al puntatore del TGraphErrors
   g->SetName("fit");
 
@@ -50,7 +50,7 @@ void lin() {
   g->Draw("AP");
   g->SetTitle("calib");
   g->GetXaxis()->SetTitle("p mb ");
-  g->GetYaxis()->SetTitle(" peak ");
+  g->GetYaxis()->SetTitle(" vmax u.a. ");
   
   // definisco funzione del fit
   // la chiamo f1 e la associo alla funzione esponenziale che ho creato prima di nome fitf2. 
@@ -82,7 +82,7 @@ void lin() {
 TMultiGraph* mg = new TMultiGraph();
     mg->Add(g);
     mg->Draw("ap");
-    mg->SetTitle("Energy vs p");
+    mg->SetTitle("Vmax vs p");
     mg->GetXaxis()->SetTitle("p (mb)");
     mg->GetYaxis()->SetTitle("energy peak");
     f1->Draw("same");
@@ -120,7 +120,7 @@ TMultiGraph* mg = new TMultiGraph();
    TMultiGraph* mg1 = new TMultiGraph();
     mg1->Add(gr);
     mg1->Draw("AP");
-    mg1->SetTitle("Residui energy vs p");
+    mg1->SetTitle("Residui Vmax vs p");
     mg1->GetYaxis()->SetTitle("Residuals ");
     mg1->GetXaxis()->SetTitle("p (mb)");
     zero->Draw("same");

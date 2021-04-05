@@ -1,0 +1,14 @@
+GAUSSIAN FIT
+BOn
+1 picco
+ NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE
+   1  Constant     4.88720e+02   4.56271e+00   6.61776e-03   1.22427e-04
+   2  Mean         5.33493e+03   4.50615e-01   2.54389e-03  -7.69924e-05
+   3  Sigma        2.13056e+01   4.46275e-01   8.13171e-06   6.28980e-02
+
+2 picco
+
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE
+   1  Constant     5.38162e+02   5.46299e+00  -4.73016e-03  -9.59090e-07
+   2  Mean         5.42770e+03   7.80074e-01  -9.57045e-04  -1.37128e-06
+   3  Sigma        2.15822e+01   8.26356e-01  -2.26281e-05   2.78014e-04
