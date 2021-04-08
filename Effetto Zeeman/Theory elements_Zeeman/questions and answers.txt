@@ -1,0 +1,16 @@
+relazione problemi
+1) peak spacing dovrebbe esser circa costante
+2) andamento risoluzioni in funzione della posizione dei picchi
+3) senza polarimetro i tre picchi si vedono davvero male: rebinning?
+
+
+1) prendere media sia dei picchi a destra che al centro che a sinistra, considero tre delta x differenti
+butto dentro i valori e ottengo R come lambda su delta lambda 582.5 nm 1px sono 7 micron
+R=fwhm/lambda va circa fino a 10^3
+
+delta=picco destra meno picco sinistra, è delta lambda zee che è circa 0.016 nm
+
+
+
+COSE DA FARE
+SISTEMA RISOLUZIONE CHE E' ALTA

@@ -37,7 +37,7 @@ double fitzero(double *x, double *par) {
 
 void lin() {
   //crea un puntatore e nel costruttore gli passiamo direttamente il nome del file da cui prendere i dati
-  TGraphErrors *g = new TGraphErrors("lambda.txt");
+  TGraphErrors *g = new TGraphErrors("xfwhm.txt");
     // associo un nome al seti di dati, do' un nome al puntatore del TGraphErrors
   g->SetName("fit");
 
@@ -55,7 +55,7 @@ void lin() {
   // definisco funzione del fit
   // la chiamo f1 e la associo alla funzione esponenziale che ho creato prima di nome fitf2. 
   //Devo dare i parametri xmin e xmax
-  TF1 *f1 = new TF1("f1", fitfretta, 450, 700, 2);
+  TF1 *f1 = new TF1("f1", fitfretta, 3500, 8000, 2);
   f1->SetLineStyle(1);
     f1->SetLineColor(2);
     f1->SetLineWidth(1);
@@ -82,9 +82,9 @@ void lin() {
 TMultiGraph* mg = new TMultiGraph();
     mg->Add(g);
     mg->Draw("ap");
-    mg->SetTitle("Fit lineare n vs lambda");
-    mg->GetYaxis()->SetTitle("n");
-    mg->GetXaxis()->SetTitle("lamda (nm)");
+    mg->SetTitle("Linear fit fwhm vs peak position");
+    mg->GetYaxis()->SetTitle("fwhm (u.a.)");
+    mg->GetXaxis()->SetTitle("peak position (u.a.)");
     f1->Draw("same");
 
   //c1->Print("fitsalitashaper.pdf");
@@ -122,7 +122,7 @@ TMultiGraph* mg = new TMultiGraph();
     mg1->Draw("AP");
     mg1->SetTitle("Residui fit lineare n vs lambda");
     mg1->GetYaxis()->SetTitle("Residuals ");
-    mg1->GetXaxis()->SetTitle("lambda (nm)");
+    mg1->GetXaxis()->SetTitle("peak position (u.a.)");
     zero->Draw("same");
  
  // c2->Print("Residuiobliq.pdf");
