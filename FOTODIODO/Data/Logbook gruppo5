@@ -1,0 +1,27 @@
+Di seguito sono  riportati i nomi dei file root e txt delle acquisizioni fatte con il loro contenuto, i risultati delle risoluzioni per i tre diversi shaping time.
+
+Per tutta l'esperienza la sorgente è stata posta alla minima distanza dal rivelatore che risulta essere a 1.2 cm e non sono stati usati assorbitori.
+Dato che l'elettronica permetteva valori di shaping time di 1.5, 3, 4 us sono sytati utilizzati questi al posto di quelli indicati nel vademecum dell'esperienza, ossia 1, 2, 3 us.
+
+1)shaping time 3 us
+-primospettro.txt(.root) è un primo spettro di prova 
+-secondospettro.txt(.root) è sempre uno spettro di prova
+-3micro_primo.txt(.root) è lo spettro salvato per lo shaping time a 3 us
+-Fit Gaussiano 3us è il nome del file con l'immagine con il fit gaussiano sul picco a 60 keV 
+-Spettro 3us è il nome del file pdf con l'immagine dello spettro a 3us
+La risoluzione calcolata è (6.8 +- 0.2) %
+
+
+2)shaping time 1.5 us
+-1.5micro_primo.txt(.root) è lo spettro salvato per lo shaping time a 1.5 us
+-Fit Gaussiano 1.5us è il nome del'immagine con il fit gaussiano sul picco a 60 keV
+-Spettro 1.5us è il nome del file pdf con l'immagine dello spettro a 1.5us
+La risoluzione calcolata è (7.4 +- 0.2) %
+
+
+2)shaping time 4 us
+-4micro_primo.txt(.root) è lo spettro salvato per lo shaping time a 4 us
+-Fit Gaussiano 4us è il nome del'immagine con il fit gaussiano sul picco a 60 keV
+-Spettro 4us è il nome del file pdf con l'immagine dello spettro a 4us
+La risoluzione calcolata è (7.1 +- 0.2)%
+
